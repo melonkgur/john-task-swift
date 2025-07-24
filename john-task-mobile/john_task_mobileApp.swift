@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct john_task_mobileApp: App {
+    @StateObject var briefingVM = BriefingViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
-        }
+            NavigationStack {
+                ContentView().onAppear {
+                    briefingVM.retrieveBriefs()
+                }
+            }
+        }.environmentObject(briefingVM)
     }
 }
