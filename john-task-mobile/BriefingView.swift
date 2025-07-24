@@ -13,7 +13,25 @@ struct BriefingView: View {
     
     var body: some View {
         if let err = viewModel.requestError {
-            Text(err.localizedDescription)
+            ZStack {
+                // x button to exit the view
+                VStack {
+                    HStack {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "xmark")
+                                .font(.title)
+                        }.padding()
+                        
+                        Spacer()
+                    }.padding()
+                    
+                    Spacer()
+                }
+                
+                Text(err.localizedDescription)
+            }
         } else {
             GeometryReader { geometry in
                 ZStack {
